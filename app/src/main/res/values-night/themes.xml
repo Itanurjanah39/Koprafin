@@ -49,18 +49,18 @@
     <style name="Koprafin.Text.Section" parent="TextTitle_Bold">
         <item name="android:textSize">16sp</item>
     </style>
-    <style name="Koprafin.Text.Label">
+    <style name="Koprafin.Text.Label" parent="">
         <item name="android:textSize">13sp</item>
         <item name="android:fontFamily">@font/jakarta_sans</item>
         <item name="android:textColor">@color/colorTextSecondary</item>
     </style>
-    <style name="Koprafin.Text.Value">
+    <style name="Koprafin.Text.Value" parent="">
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/jakarta_sans</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
-    <style name="Koprafin.Text.FieldLabel">
+    <style name="Koprafin.Text.FieldLabel" parent="">
         <item name="android:textSize">13sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/jakarta_sans</item>
