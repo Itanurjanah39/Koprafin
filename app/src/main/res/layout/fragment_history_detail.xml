@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F7F8FA"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/cardProduct"
+            android:layout_marginTop="12dp"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_ios_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imgProduct"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/top_rounded"
+                android:clipToOutline="true"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCategory"
+                android:layout_marginTop="8dp"
+                android:textSize="13sp"
+                android:textColor="#777" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProductName"
+                android:layout_marginTop="6dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#1C1C1E" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvProductDescription"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textColor="#555555" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvStatus"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:textColor="@android:color/white"
+                android:background="@drawable/bg_status_badge" />
+        </LinearLayout>
+
+
+        <!-- CREDIT INFO -->
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_ios_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Kredit"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textColor="#1C1C1E"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTenor"
+                android:layout_marginTop="10dp"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTotal"
+                android:layout_marginTop="4dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvCreatedAt"
+                android:layout_marginTop="4dp"
+                android:textSize="13sp"
+                android:textColor="#777" />
+
+        </LinearLayout>
+
+
+        <!-- APPLICANT INFO -->
+        <LinearLayout
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_ios_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Pengaju"
+                android:textStyle="bold"
+                android:textColor="#1C1C1E"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvApplicantName"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nomor Identitas (NIK)"
+                android:layout_marginTop="6dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvApplicantNIK"
+                android:layout_marginTop="4dp"
+                android:textStyle="bold"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nomor Hp / WA"
+                android:layout_marginTop="6dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvApplicantPhone"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perusahaan"
+                android:layout_marginTop="6dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvApplicantCompany"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Divisi"
+                android:layout_marginTop="6dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvApplicantDivision"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bergabung Pada"
+                android:layout_marginTop="6dp"
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvApplicantWorkEntry"
+                android:layout_marginTop="4dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+
+        <!-- HISTORY TIMELINE -->
+        <LinearLayout
+            android:id="@+id/containerTimeline"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/bg_ios_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Riwayat Status"
+                android:textStyle="bold"
+                android:textColor="#1C1C1E"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/timelineList"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+        <!-- ADMIN ACTION -->
+        <LinearLayout
+            android:id="@+id/llAdminAction"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnApprove"
+                android:text="Terima"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:textColor="@color/white"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:background="@drawable/item_button_primary"/>
+
+            <Space android:layout_width="16dp" android:layout_height="1dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnReject"
+                android:text="Tolak"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="48dp"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextPrimary"
+                android:background="@drawable/item_button_cancel"/>
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:id="@+id/btnFinish"
+            android:text="Selesai"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:background="@drawable/item_button_secondary"/>
+
+    </LinearLayout>
+
+</ScrollView>

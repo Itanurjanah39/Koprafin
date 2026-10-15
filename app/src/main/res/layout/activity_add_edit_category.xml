@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".page.main.AddEditCategoryActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tambah Kategori"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:background="@drawable/bg_ios_card"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategori Produk"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#2B2B2B"/>
+
+        <EditText
+            android:id="@+id/etCategory"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_ios_input"
+            android:padding="12dp"
+            android:textSize="14sp" />
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tenor"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#2B2B2B"/>
+
+        <LinearLayout
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- Tenor Minimal -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Minimal"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <EditText
+                    android:id="@+id/etTenorMinimal"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_ios_input"
+                    android:padding="12dp"
+                    android:inputType="number"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+            <!-- Spacer -->
+            <View
+                android:layout_width="12dp"
+                android:layout_height="match_parent"/>
+
+            <!-- Tenor Maksimal -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Maksimal"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary"/>
+
+                <EditText
+                    android:id="@+id/etTenorMaksimal"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_ios_input"
+                    android:padding="12dp"
+                    android:inputType="number"
+                    android:textSize="14sp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Margin"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#2B2B2B"/>
+
+        <EditText
+            android:id="@+id/etMargin"
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_ios_input"
+            android:padding="12dp"
+            android:inputType="number"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSaveCategory"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/item_button_primary"
+        android:text="Simpan"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+</LinearLayout>

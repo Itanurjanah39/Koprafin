@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/white"
+    android:elevation="0dp"
+    app:cardCornerRadius="12dp"
+    android:layout_margin="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="22dp">
+
+        <TextView
+            android:layout_gravity="start"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kata Sandi Baru"
+            />
+        <RelativeLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etNewPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:inputType="textPassword"
+                android:textSize="14sp"/>
+            <ImageView
+                android:id="@+id/ivShowNewPass"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="22sp"
+                android:layout_height="22sp"
+                android:adjustViewBounds="true"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/eye"/>
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_gravity="start"
+            android:layout_marginTop="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi Kata Sandi"
+            />
+        <RelativeLayout
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:inputType="textPassword"
+                android:textSize="14sp"/>
+            <ImageView
+                android:id="@+id/ivShowConfirmPass"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_width="22sp"
+                android:layout_height="22sp"
+                android:adjustViewBounds="true"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/eye"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_marginTop="22dp"
+            android:layout_gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/tvCancel"
+                android:layout_gravity="center_vertical"
+                android:paddingEnd="22dp"
+                android:paddingStart="22dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Batal"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorTextSecondary"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:text="Perbarui"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:background="@drawable/item_button_secondary"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

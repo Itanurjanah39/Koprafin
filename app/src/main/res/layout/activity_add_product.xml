@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:background="#F7F8FA"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:layout_toStartOf="@+id/ivMenuDelete"
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tambah Produk"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <ImageView
+                android:layout_alignParentEnd="true"
+                android:id="@+id/ivMenuDelete"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:src="@drawable/ic_more"/>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:background="@drawable/bg_ios_card"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kategori Produk"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2B2B2B"/>
+
+            <Spinner
+                android:id="@+id/spCategory"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_ios_input" />
+
+
+            <!-- PRODUCT NAME -->
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama Produk"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2B2B2B"/>
+
+            <EditText
+                android:id="@+id/etName"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_ios_input"
+                android:padding="12dp"
+                android:textSize="14sp"
+                android:hint="Masukkan nama produk" />
+
+
+            <!-- PRICE -->
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Harga"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2B2B2B"/>
+
+            <EditText
+                android:id="@+id/etPrice"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_ios_input"
+                android:padding="12dp"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:hint="Masukkan harga"/>
+
+
+            <!-- DESCRIPTION -->
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deskripsi"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2B2B2B"/>
+
+            <EditText
+                android:id="@+id/etDescription"
+                android:layout_marginTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="top"
+                android:padding="12dp"
+                android:background="@drawable/bg_ios_input"
+                android:textSize="14sp"
+                android:hint="Masukkan deskripsi produk"/>
+
+
+            <!-- PHOTOS -->
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Foto Produk (maks 6 gambar)"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#2B2B2B"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvImages"
+                android:layout_marginTop="12dp"
+                android:layout_width="match_parent"
+                android:nestedScrollingEnabled="false"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveProduct"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/item_button_primary"
+            android:text="Simpan"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

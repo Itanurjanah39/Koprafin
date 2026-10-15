@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:background="@drawable/bg_bottomsheet_rounded">
+
+    <View
+        android:id="@+id/dragHandle"
+        android:layout_width="40dp"
+        android:layout_height="5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:alpha="0.6"
+        android:backgroundTint="#C7C7C7"
+        android:clipToOutline="true"
+        android:background="@drawable/bg_drag_handle"/>
+
+
+    <TextView
+        android:layout_marginTop="12dp"
+        android:id="@+id/tvHargaValue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rp 0"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorTextPrimary"/>
+
+    <!-- TENOR -->
+    <TextView
+        android:id="@+id/tvTenorLabel"
+        android:layout_marginTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tenor (bulan)"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvTenor"
+        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="6"
+        android:textSize="26sp"
+        android:textStyle="bold"/>
+
+    <!-- SLIDER TENOR -->
+
+    <!-- ANGSRUAN -->
+    <SeekBar
+        android:id="@+id/seekTenor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:max="12" />
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Angsuran / Bulan"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvAngsuran"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rp 0"
+        android:textSize="22sp"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginStart="12sp"
+        android:layout_marginEnd="12sp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/btnAjukan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_button_secondary"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:text="Ajukan Kredit"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>

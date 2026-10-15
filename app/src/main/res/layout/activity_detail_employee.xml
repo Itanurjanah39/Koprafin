@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipeRefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- FOTO PROFIL -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileImage"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="12dp"
+                android:src="@drawable/user" />
+
+            <!-- NAMA -->
+            <TextView
+                android:layout_marginTop="4dp"
+                android:text="Nama Lengkap"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:layout_marginTop="6dp"
+                android:id="@+id/etNama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <!-- EMAIL -->
+            <TextView
+                android:layout_marginTop="12dp"
+                android:text="Email"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:padding="10dp"
+                android:inputType="textEmailAddress"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <!-- NIK -->
+            <TextView
+                android:layout_marginTop="12dp"
+                android:text="NIK"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etNIK"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:padding="10dp"
+                android:inputType="number"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <!-- ROLE -->
+            <TextView
+                android:layout_marginTop="12dp"
+                android:text="Role"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <Spinner
+                android:id="@+id/spRole"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"/>
+
+            <TextView
+                android:layout_marginTop="12dp"
+                android:text="No HP"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etHp"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:padding="10dp"
+                android:inputType="phone"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_marginTop="12dp"
+                android:text="Company"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etCompany"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_marginTop="12dp"
+                android:text="Divisi"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etDivisi"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:padding="10dp"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_marginTop="12dp"
+                android:text="Bergabung Pada"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <EditText
+                android:id="@+id/etJoinDate"
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_edittext"
+                android:padding="10dp"
+                android:focusable="false"
+                android:clickable="true"
+                android:textSize="14sp"
+                android:textStyle="bold"/>
+
+            <!-- PASSWORD (HANYA MODE CREATE) -->
+            <TextView
+                android:id="@+id/tvPasswordLabel"
+                android:layout_marginTop="12dp"
+                android:text="Password"
+                android:textColor="@color/colorTextPrimary"
+                android:textSize="13sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:layout_marginTop="6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/item_edittext"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="40dp"
+                    android:inputType="textPassword"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+
+                <ImageView
+                    android:id="@+id/ivShowPass"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/eye" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSimpan"
+                android:layout_marginTop="24dp"
+                android:text="Simpan"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/item_button_primary"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

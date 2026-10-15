@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+
+    <TextView
+        android:id="@+id/tvEmailInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kode dikirim ke email"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginBottom="6dp" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="6">
+
+        <EditText
+            android:id="@+id/otp1"
+            style="@style/OtpStyle"/>
+
+        <EditText
+            android:id="@+id/otp2"
+            style="@style/OtpStyle"/>
+
+        <EditText
+            android:id="@+id/otp3"
+            style="@style/OtpStyle"/>
+
+        <EditText
+            android:id="@+id/otp4"
+            style="@style/OtpStyle"/>
+
+        <EditText
+            android:id="@+id/otp5"
+            style="@style/OtpStyle"/>
+
+        <EditText
+            android:id="@+id/otp6"
+            style="@style/OtpStyle"/>
+    </LinearLayout>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnVerify"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Verifikasi"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:background="@drawable/item_button_primary"/>
+
+    <TextView
+        android:id="@+id/tvResend"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kirim ulang dalam 60 detik"
+        android:textColor="@color/greyPrimary"
+        android:textSize="14sp"
+        android:gravity="center"/>
+
+
+
+</LinearLayout>

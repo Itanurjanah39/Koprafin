@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".page.main.HistoryFragment"
+    android:id="@+id/swipeRefresh">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_marginStart="12sp"
+                android:layout_marginEnd="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:hint="cari..."
+                android:textSize="14sp"
+                android:paddingHorizontal="16dp"
+                android:background="@drawable/bg_edittext_rounded"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="12sp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:id="@+id/rvEmployee"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_marginTop="54dp"
+                android:id="@+id/llEmptyList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_margin="22dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/empty_data"
+                    android:adjustViewBounds="true"/>
+                <TextView
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum Ada Anggota!"
+                    android:textSize="16sp"
+                    android:textColor="@color/greyPrimary"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+      <com.google.android.material.floatingactionbutton.FloatingActionButton
+          android:id="@+id/FABAdd"
+          android:layout_margin="22dp"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentEnd="true"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_add"
+          android:background="@color/colorPrimary"
+          android:tint="@color/white"/>
+
+    </RelativeLayout>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

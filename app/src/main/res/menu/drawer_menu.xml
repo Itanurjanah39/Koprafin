@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="Beranda"
+            android:icon="@drawable/ic_apps" />
+        <item
+            android:id="@+id/nav_catalog"
+            android:title="Katalog"
+            android:icon="@drawable/ic_catalog" />
+        <item
+            android:id="@+id/nav_history"
+            android:title="Riwayat"
+            android:icon="@drawable/ic_history" />
+        <item
+            android:id="@+id/nav_employee"
+            android:title="Anggota"
+            android:icon="@drawable/ic_team" />
+        <item
+            android:id="@+id/nav_profile"
+            android:title="Profil"
+            android:icon="@drawable/ic_user" />
+        <item
+            android:id="@+id/nav_setting"
+            android:title="Pengaturan"
+            android:icon="@drawable/ic_setting" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout"
+                android:icon="@drawable/ic_logout" />
+        </menu>
+    </item>
+</menu>
