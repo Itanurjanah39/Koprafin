@@ -1,58 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/swipeRefresh">
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginBottom="6dp">
+        android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_marginTop="54dp"
-        android:id="@+id/llEmptyCatalog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <ImageView
-            android:layout_margin="22dp"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llEmptyCatalog"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/empty_data"
-            android:adjustViewBounds="true"/>
-        <TextView
-            android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Belum Ada Katalog!"
-            android:textSize="16sp"
-            android:textColor="@color/greyPrimary"/>
+            android:layout_marginTop="64dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/empty_data"
+                android:contentDescription="Kosong" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Katalog masih kosong"
+                style="@style/Koprafin.Text.Section" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:paddingStart="12dp"
-        android:paddingEnd="12dp"
-        android:id="@+id/tabCategories"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="scrollable"
-        app:tabTextColor="@color/black"
-        app:tabTextAppearance="@style/CustomTabTextStyle"
-        app:tabSelectedTextColor="@color/colorPrimary"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Tarik ke bawah untuk memuat ulang."
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary" />
+        </LinearLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabCategories"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:clipToPadding="false"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:tabMode="scrollable"
+            app:tabGravity="start"
+            app:tabIndicator="@drawable/tab_pill"
+            app:tabIndicatorGravity="stretch"
+            app:tabIndicatorFullWidth="true"
+            app:tabIndicatorColor="@null"
+            app:tabIndicatorAnimationMode="elastic"
+            app:tabPaddingStart="18dp"
+            app:tabPaddingEnd="18dp"
+            app:tabMinWidth="0dp"
+            app:tabRippleColor="@null"
+            app:tabTextAppearance="@style/CustomTabTextStyle"
+            app:tabTextColor="@color/colorTextSecondary"
+            app:tabSelectedTextColor="@color/white" />
 
-
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

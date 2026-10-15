@@ -69,15 +69,19 @@ class ProfileFragment : Fragment() {
                     .into(binding.profileImage)
 
                 val role = AuthToken.roleUser(requireContext())
+                val nik = data.employee?.nik
 
-                if (role == "admin") {
-                    binding.tvNama.text = data.employee?.name ?: "-"
+                binding.tvNama.text = data.employee?.name ?: "-"
+
+                if (role != "admin" && !nik.isNullOrEmpty()) {
+                    binding.tvNik.text = "NIK $nik"
+                    binding.tvNik.visibility = View.VISIBLE
                 } else {
-                    binding.tvNama.text =
-                        "${data.employee?.name} - ${data.employee?.nik}" ?: "-"
+                    binding.tvNik.visibility = View.GONE
                 }
 
-                binding.tvJabatan.text = data.employee?.role ?: "-"
+                binding.tvJabatan.text =
+                    (data.employee?.role ?: "-").replaceFirstChar { it.uppercase() }
 
                 binding.etHp.setText(data.employee?.phone ?: "-")
                 binding.etCompany.setText(data.employee?.company ?: "-")

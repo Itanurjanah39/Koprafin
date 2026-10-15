@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="315" android:startColor="@color/brandDeep" android:centerColor="@color/brandPrimary" android:endColor="@color/brandAqua"/>
+            <corners android:radius="24dp"/>
+        </shape>
+    </item>
+    <!-- lingkaran dekoratif -->
+    <item android:gravity="top|end" android:width="180dp" android:height="180dp" android:top="-70dp" android:right="-60dp">
+        <shape android:shape="oval"><solid android:color="#14FFFFFF"/></shape>
+    </item>
+    <item android:gravity="bottom|end" android:width="110dp" android:height="110dp" android:bottom="-40dp" android:right="60dp">
+        <shape android:shape="oval"><solid android:color="#0FFFFFFF"/></shape>
+    </item>
+</layer-list>

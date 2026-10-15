@@ -11,6 +11,7 @@ import com.masfitatech.koprafin.R
 import com.masfitatech.koprafin.data.model.DataHistory
 import com.masfitatech.koprafin.utils.DateUtils
 import com.masfitatech.koprafin.utils.RupiahUtils
+import com.masfitatech.koprafin.utils.StatusStyle
 
 class HistoryAdapter(
     private var items: List<DataHistory>,
@@ -51,22 +52,7 @@ class HistoryAdapter(
         holder.tvTenor.text = "${item.tenor ?: 0} Bulan"
         holder.tvTotal.text = RupiahUtils.toRupiah(item.total)
 
-        val status = item.status?.lowercase() ?: ""
-
-        holder.tvStatus.text = status.replaceFirstChar { it.uppercase() }
-
-        val ctx = holder.itemView.context
-
-        val colorRes = when (status) {
-            "pengajuan" -> R.color.statusPengajuan
-            "berjalan"  -> R.color.statusBerjalan
-            "selesai"   -> R.color.colorPrimary
-            "ditolak"   -> R.color.statusDitolak
-            else        -> R.color.statusDefault
-        }
-
-        holder.tvStatus.backgroundTintList =
-            ContextCompat.getColorStateList(ctx, colorRes)
+        StatusStyle.apply(holder.tvStatus, item.status)
     }
 
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/colorPrimary"/> <!-- default -->
-    <corners android:radius="12dp" />
-    <padding android:left="16dp" android:right="16dp" android:top="3dp" android:bottom="3dp"/>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <solid android:color="@color/statusSelesaiBg"/>
+    <corners android:radius="100dp"/>
+    <padding android:left="12dp" android:right="12dp" android:top="5dp" android:bottom="5dp"/>
 </shape>

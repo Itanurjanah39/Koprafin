@@ -1,65 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="20dp"
     app:cardBackgroundColor="@color/white"
-    android:elevation="0dp"
-    app:cardCornerRadius="12dp"
-    android:layout_margin="16dp">
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:gravity="center_horizontal"
+        android:padding="24dp">
+        <FrameLayout
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:background="@drawable/bg_icon_soft"
+            android:backgroundTint="@color/statusDitolakBg">
 
-        <!-- Icon Error -->
-        <ImageView
-            android:id="@+id/imgError"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/ic_fail"
-            android:layout_marginBottom="14dp"/>
+            <ImageView
+                android:id="@+id/imgError"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_fail"
+                android:contentDescription="Gagal" />
+        </FrameLayout>
 
-        <!-- Judul Error -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Gagal"
-            android:textStyle="bold"
-            android:textSize="18sp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
-            android:layout_marginBottom="6dp"/>
+            android:text="Gagal"
+            style="@style/TextTitle_Bold" />
 
-        <!-- Pesan Error -->
         <TextView
             android:id="@+id/tvMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="14sp"
+            android:layout_marginTop="6dp"
             android:gravity="center"
-            android:layout_marginBottom="20dp"/>
-
+            android:lineSpacingExtra="3dp"
+            android:textSize="14sp"
+            android:textColor="@color/colorTextSecondary" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginStart="12dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="12dp"
             android:id="@+id/btnClose"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:text="Tutup"
-            android:background="@drawable/item_button_primary"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:textStyle="bold"/>
-
+            android:layout_marginTop="24dp"
+            style="@style/Koprafin.Button.Primary"
+            android:text="Tutup" />
     </LinearLayout>
-
-
-
 </androidx.cardview.widget.CardView>

@@ -1,34 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Palette -->
-    <color name="colorPrimary">#309F7E</color>
-    <color name="colorPrimaryVariant">#50c6a3</color>
-    <color name="greyPrimary">#6D6D6D</color>
+    <!-- ===== Brand Koprafin (diambil dari logo) ===== -->
+    <color name="brandDeep">#0A3B39</color>
+    <color name="brandDark">#00715F</color>
+    <color name="brandPrimary">#008470</color>
+    <color name="brandGreen">#16B26A</color>
+    <color name="brandFresh">#22C065</color>
+    <color name="brandAqua">#13B5A8</color>
+    <color name="brandBlue">#2484F0</color>
+    <color name="brandMint">#E6F6F0</color>
+    <color name="brandMintSoft">#F1FAF6</color>
+    <color name="brandOnDarkSoft">#B7E4D6</color>
+    <color name="whiteAlpha15">#26FFFFFF</color>
+    <color name="whiteAlpha25">#40FFFFFF</color>
 
-    <!-- Warna Aksen / Secondary -->
-    <color name="colorSecondary">#ABE7B2</color>
-    <color name="colorSecondaryDark">#41A67E</color>
+    <!-- ===== Nama lama dipertahankan agar layout lain ikut ===== -->
+    <color name="colorPrimary">#008470</color>
+    <color name="colorPrimaryVariant">#00715F</color>
+    <color name="greyPrimary">#6B7F7B</color>
+    <color name="colorSecondary">#22C065</color>
+    <color name="colorSecondaryDark">#0A3B39</color>
 
-    <color name="colorTextPrimary">#212121</color>
-    <color name="colorTextSecondary">#7A7A73</color>
-    <color name="greyTextSoft">#9E9E9E</color>
+    <color name="colorTextPrimary">#102A27</color>
+    <color name="colorTextSecondary">#5E726E</color>
+    <color name="greyTextSoft">#9AABA7</color>
 
-    <!-- monocrome -->
     <color name="white">#FFFFFF</color>
-    <color name="black">#000000</color>
+    <color name="black">#102A27</color>
 
-    <!-- Warna Latar -->
-    <color name="colorBackground">#DDDDDD</color>
-    <color name="colorSurface">#F5F5F5</color>
+    <color name="colorBackground">#F4F8F7</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOutline">#E2ECE9</color>
+    <color name="colorDivider">#EDF2F1</color>
 
-    <!-- Warna Status -->
-    <color name="colorError">#B00020</color>
-    <color name="colorSuccess">#388E3C</color>
-    <color name="colorWarning">#FBC02D</color>
+    <color name="colorError">#D93B3B</color>
+    <color name="colorSuccess">#16B26A</color>
+    <color name="colorWarning">#F2A516</color>
 
-    <color name="statusPengajuan">#FFC107</color>
-    <color name="statusBerjalan">#2196F3</color>
-    <color name="statusDitolak">#F44336</color>
-    <color name="statusDefault">#9E9E9E</color>
-
+    <!-- ===== Status kredit: teks (kuat) & latar (lembut) ===== -->
+    <color name="statusPengajuan">#B86E00</color>
+    <color name="statusPengajuanBg">#FFF2D9</color>
+    <color name="statusBerjalan">#1D6FD1</color>
+    <color name="statusBerjalanBg">#E3EFFD</color>
+    <color name="statusSelesai">#00805F</color>
+    <color name="statusSelesaiBg">#DDF4EA</color>
+    <color name="statusDitolak">#C83232</color>
+    <color name="statusDitolakBg">#FDE7E7</color>
+    <color name="statusDefault">#6B7F7B</color>
+    <color name="statusDefaultBg">#EDF2F1</color>
 </resources>

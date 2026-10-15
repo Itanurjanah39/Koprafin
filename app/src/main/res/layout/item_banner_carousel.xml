@@ -2,12 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:clipToOutline="true"
-    android:background="@drawable/thumb_shape">
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
+    android:background="@drawable/bg_banner"
+    android:clipToOutline="true">
 
     <ImageView
         android:id="@+id/imgBanner"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:contentDescription="Banner" />
 </FrameLayout>

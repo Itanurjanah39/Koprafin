@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:background="#F7F8FA"
+    android:background="@color/colorBackground"
     android:scrollbars="none">
 
     <LinearLayout
@@ -46,7 +46,7 @@
                 android:text="Kategori Produk"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#2B2B2B"/>
+                android:textColor="@color/colorTextPrimary"/>
 
             <Spinner
                 android:id="@+id/spCategory"
@@ -64,7 +64,7 @@
                 android:text="Nama Produk"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#2B2B2B"/>
+                android:textColor="@color/colorTextPrimary"/>
 
             <EditText
                 android:id="@+id/etName"
@@ -85,7 +85,7 @@
                 android:text="Harga"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#2B2B2B"/>
+                android:textColor="@color/colorTextPrimary"/>
 
             <EditText
                 android:id="@+id/etPrice"
@@ -107,7 +107,7 @@
                 android:text="Deskripsi"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#2B2B2B"/>
+                android:textColor="@color/colorTextPrimary"/>
 
             <EditText
                 android:id="@+id/etDescription"
@@ -129,7 +129,7 @@
                 android:text="Foto Produk (maks 6 gambar)"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#2B2B2B"/>
+                android:textColor="@color/colorTextPrimary"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvImages"
@@ -152,13 +152,15 @@
             android:id="@+id/btnSaveProduct"
             android:layout_marginTop="24dp"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="52dp"
             android:background="@drawable/item_button_primary"
             android:text="Simpan"
-            android:textStyle="bold"
+            
             android:textSize="16sp"
             android:textColor="@color/white"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:stateListAnimator="@null"/>
 
     </LinearLayout>
 

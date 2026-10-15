@@ -1,114 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    app:cardElevation="2dp"
-    app:cardCornerRadius="12dp"
-    android:foreground="?attr/selectableItemBackground">
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="0dp"
+    app:strokeColor="@color/colorOutline"
+    app:strokeWidth="1dp">
 
     <LinearLayout
-        android:padding="16dp"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:padding="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvProductName"
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_icon_soft"
+                android:padding="11dp"
+                android:src="@drawable/ic_v_wallet"
+                android:contentDescription="@null"
+                app:tint="@color/brandPrimary" />
+
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Emas LM 3 Gr"
-                android:textStyle="bold"
-                android:textSize="15sp"
-                android:textColor="@color/black" />
+                android:layout_weight="1"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
 
-            <!-- Status badge -->
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:text="Nama produk"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorTextPrimary" />
+
+                <TextView
+                    android:id="@+id/tvDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:drawableStart="@drawable/ic_v_calendar"
+                    android:drawablePadding="4dp"
+                    android:drawableTint="@color/greyTextSoft"
+                    android:gravity="center_vertical"
+                    android:text="12 Januari 2026"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTextSecondary" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
-                android:background="@drawable/bg_status_badge"
                 android:layout_height="wrap_content"
                 android:text="Selesai"
-                android:textStyle="bold"
-                android:textSize="12sp"
-                android:textColor="@color/white" />
+                style="@style/Koprafin.Badge" />
         </LinearLayout>
 
-        <!-- Tanggal -->
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="12 Januari 2025"
-            android:textSize="12sp"
-            android:textColor="@color/colorTextSecondary" />
-
-        <!-- GARIS PEMISAH -->
         <View
-            android:layout_marginVertical="12dp"
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E0E0E0" />
+            android:layout_height="2dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="14dp"
+            android:layerType="software"
+            android:background="@drawable/divider_dashed" />
 
-        <!-- TENOR -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:orientation="horizontal">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="Tenor"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary" />
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvTenor"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tenor"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTextSecondary" />
+
+                <TextView
+                    android:id="@+id/tvTenor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="6 Bulan"
+                    style="@style/Koprafin.Text.Value" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="6 Bulan"
-                android:textSize="13sp"
-                android:textColor="@color/black" />
+                android:gravity="end"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total pinjaman"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorTextSecondary" />
+
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Rp0"
+                    style="@style/TextTitle_Bold"
+                    android:textSize="16sp"
+                    android:textColor="@color/brandPrimary" />
+            </LinearLayout>
         </LinearLayout>
-
-        <!-- TOTAL PINJAMAN -->
-        <LinearLayout
-            android:layout_marginTop="6dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Total"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary" />
-
-            <TextView
-                android:id="@+id/tvTotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Rp 6.950.000"
-                android:textStyle="bold"
-                android:textSize="14sp"
-                android:textColor="@color/colorPrimary" />
-        </LinearLayout>
-
     </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

@@ -1,50 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipeRefresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".page.main.HistoryFragment"
-    android:id="@+id/swipeRefresh">
+    tools:context=".page.main.HistoryFragment">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
             android:id="@+id/rvHistory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingTop="4dp"
+            android:paddingBottom="24dp"
+            tools:listitem="@layout/item_history" />
 
         <LinearLayout
-           android:layout_marginTop="54dp"
             android:id="@+id/llEmptyList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
+            android:paddingStart="32dp"
+            android:paddingEnd="32dp"
             android:visibility="gone">
 
             <ImageView
-                android:layout_margin="22dp"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
                 android:src="@drawable/empty_product"
-                android:adjustViewBounds="true"/>
+                android:contentDescription="Kosong" />
+
             <TextView
-                android:layout_gravity="center_horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Belum Ada Riwayat Pengajuan!"
-                android:textSize="16sp"
-                android:textColor="@color/greyPrimary"/>
+                android:layout_marginTop="12dp"
+                android:text="Belum ada pengajuan"
+                style="@style/Koprafin.Text.Section" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center"
+                android:text="Pilih produk di Katalog lalu ajukan kredit. Riwayatnya akan tampil di sini."
+                android:textSize="13sp"
+                android:textColor="@color/colorTextSecondary" />
         </LinearLayout>
-
-
-    </LinearLayout>
-
-
+    </FrameLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

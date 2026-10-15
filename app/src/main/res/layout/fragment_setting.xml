@@ -34,10 +34,12 @@
                     android:paddingStart="18sp"
                     android:paddingEnd="18sp"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="42dp"
                     android:text="Tambah Kategori"
                     android:textAllCaps="false"
-                    android:background="@drawable/item_button_secondary"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:stateListAnimator="@null"
+                    android:background="@drawable/item_button_primary"
                     android:textColor="@color/white"/>
             </RelativeLayout>
 
@@ -66,10 +68,12 @@
                     android:paddingStart="18sp"
                     android:paddingEnd="18sp"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="42dp"
                     android:text="Tambah Banner"
                     android:textAllCaps="false"
-                    android:background="@drawable/item_button_secondary"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:stateListAnimator="@null"
+                    android:background="@drawable/item_button_primary"
                     android:textColor="@color/white"/>
             </RelativeLayout>
             <androidx.recyclerview.widget.RecyclerView

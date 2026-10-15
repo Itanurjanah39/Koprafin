@@ -219,9 +219,11 @@
                 android:text="Simpan"
                 android:textColor="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:background="@drawable/item_button_primary"
-                android:textAllCaps="false"/>
+                android:textAllCaps="false"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:stateListAnimator="@null"/>
 
         </LinearLayout>
 

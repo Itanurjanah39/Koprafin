@@ -75,6 +75,7 @@ class HomeFragment : Fragment() {
 
         sessionManager = SessionManager(requireContext())
         token = AuthToken.tokenLogin(requireContext()).orEmpty()
+        setGreeting(sessionManager.getName())
 
         setupBannerCarousel()
         setupRecycler()
@@ -138,7 +139,14 @@ class HomeFragment : Fragment() {
         TabLayoutMediator(binding.tabIndicator, binding.vpBanner) { _, _ -> }.attach()
     }
 
+    private fun setGreeting(fullName: String?) {
+        val firstName = fullName?.trim()?.split(" ")?.firstOrNull().orEmpty()
+        binding.tvGreetingName.text =
+            if (firstName.isEmpty()) "Halo 👋" else "Halo, $firstName 👋"
+    }
+
     private fun setupSwipeRefresh() {
+        binding.swipeRefresh.setColorSchemeResources(R.color.brandPrimary, R.color.brandGreen)
         binding.swipeRefresh.setOnRefreshListener {
             creditStatusViewModel.fetchStatus(token)
             katalogViewModel.fetchProducts(token, perPage = 10)
@@ -166,6 +174,7 @@ class HomeFragment : Fragment() {
 
     private fun observeAccount() {
         accountViewModel.accountData.observe(viewLifecycleOwner) { data ->
+            data?.employee?.name?.let { setGreeting(it) }
             Glide.with(requireContext())
                 .load(ApiClient.BASE_URL_IMAGE + data?.employee?.avatar)
                 .placeholder(R.drawable.user)

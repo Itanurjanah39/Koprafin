@@ -1,33 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.Koprafin" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
-        <item name="colorSecondary">@color/colorSecondary</item>
-        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorPrimary">@color/brandPrimary</item>
+        <item name="colorPrimaryVariant">@color/brandDark</item>
+        <item name="colorSecondary">@color/brandFresh</item>
+        <item name="colorSecondaryVariant">@color/brandGreen</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorAccent">@color/brandPrimary</item>
+        <item name="colorControlActivated">@color/brandPrimary</item>
+        <item name="colorControlHighlight">#1F008470</item>
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorSurface">@color/white</item>
 
-        <!-- Warna Latar Belakang -->
-        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
 
-        <!-- Font Default -->
         <item name="fontFamily">@font/jakarta_sans</item>
         <item name="android:fontFamily">@font/jakarta_sans</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorHint">@color/greyTextSoft</item>
 
-        <!-- Status Bar -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/colorBackground</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+
+        <item name="floatingActionButtonStyle">@style/Koprafin.Fab</item>
     </style>
+
+    <style name="Theme.Koprafin.Splash" parent="Base.Theme.Koprafin">
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:statusBarColor">@color/white</item>
+    </style>
+
+    <!-- ===== Tipografi ===== -->
     <style name="TextTitle_Bold">
         <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    <style name="Koprafin.Text.Display" parent="TextTitle_Bold">
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+    <style name="Koprafin.Text.Section" parent="TextTitle_Bold">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="Koprafin.Text.Label">
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">@font/jakarta_sans</item>
+        <item name="android:textColor">@color/colorTextSecondary</item>
+    </style>
+    <style name="Koprafin.Text.Value">
+        <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:fontFamily">@font/jakarta_sans</item>
         <item name="android:textColor">@color/colorTextPrimary</item>
     </style>
+    <style name="Koprafin.Text.FieldLabel">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/jakarta_sans</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <!-- ===== Komponen ===== -->
+    <style name="Koprafin.Button.Primary" parent="">
+        <item name="android:layout_height">54dp</item>
+        <item name="android:background">@drawable/item_button_primary</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0.01</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+    <style name="Koprafin.Button.Outline" parent="Koprafin.Button.Primary">
+        <item name="android:background">@drawable/item_button_cancel</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    <style name="Koprafin.Input" parent="">
+        <item name="android:background">@drawable/item_edittext</item>
+        <item name="android:minHeight">52dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+        <item name="android:textColorHint">@color/greyTextSoft</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:drawableTint">@color/greyPrimary</item>
+    </style>
+    <style name="Koprafin.Badge" parent="">
+        <item name="android:background">@drawable/bg_status_badge</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/statusSelesai</item>
+    </style>
+    <style name="Koprafin.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">@color/brandPrimary</item>
+        <item name="tint">@color/white</item>
+        <item name="elevation">6dp</item>
+    </style>
+
     <style name="CustomTabTextStyle" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:fontFamily">@font/poppins_semi_bold</item>
     </style>
 
     <style name="CustomDialog" parent="ThemeOverlay.AppCompat.Dialog.Alert">
@@ -36,8 +117,10 @@
     </style>
     <style name="BottomSheetTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+        <item name="android:fontFamily">@font/jakarta_sans</item>
+        <item name="fontFamily">@font/jakarta_sans</item>
+        <item name="colorAccent">@color/brandPrimary</item>
     </style>
-
     <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@android:color/transparent</item>
     </style>
@@ -45,15 +128,14 @@
     <style name="OtpStyle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">55dp</item>
-        <item name="android:layout_margin">6dp</item>
+        <item name="android:layout_height">58dp</item>
+        <item name="android:layout_margin">5dp</item>
         <item name="android:gravity">center</item>
         <item name="android:inputType">number</item>
         <item name="android:maxLength">1</item>
         <item name="android:background">@drawable/item_edittext</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/brandDeep</item>
     </style>
-
-
-
 </resources>

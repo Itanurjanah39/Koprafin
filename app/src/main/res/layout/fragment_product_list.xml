@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,63 +9,89 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:visibility="gone">
 
         <ImageView
-            android:layout_margin="22dp"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:src="@drawable/empty_data"
-            android:adjustViewBounds="true"/>
+            android:contentDescription="Kosong" />
+
         <TextView
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Belum Ada Data Product!"
-            android:textSize="16sp"
-            android:textColor="@color/greyPrimary"/>
+            android:layout_marginTop="12dp"
+            android:text="Produk tidak ditemukan"
+            style="@style/Koprafin.Text.Section" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Coba kata kunci atau kategori lain."
+            android:textSize="13sp"
+            android:textColor="@color/colorTextSecondary" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <EditText
-            android:layout_margin="12dp"
             android:id="@+id/etSearch"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
             android:background="@drawable/bg_edittext_rounded"
-            android:hint="Cari..."
-            android:paddingHorizontal="16dp" />
+            android:drawableStart="@drawable/ic_v_search"
+            android:drawablePadding="10dp"
+            android:drawableTint="@color/greyPrimary"
+            android:hint="Cari produk..."
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:textSize="14sp"
+            android:textColorHint="@color/greyTextSoft" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"/>
+            android:layout_margin="12dp"
+            android:indeterminateTint="@color/brandPrimary"
+            android:visibility="gone" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:layout_marginBottom="12dp"
             android:id="@+id/recyclerViewProducts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="96dp" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/FABAddProduct"
-        android:layout_margin="24dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="24dp"
+        android:contentDescription="Tambah produk"
         android:src="@drawable/ic_add"
         android:visibility="gone"
-        android:background="@color/colorPrimary"
-        android:tint="@color/white"/>
-
+        app:backgroundTint="@color/brandPrimary"
+        app:tint="@color/white"
+        app:maxImageSize="22dp" />
 </RelativeLayout>

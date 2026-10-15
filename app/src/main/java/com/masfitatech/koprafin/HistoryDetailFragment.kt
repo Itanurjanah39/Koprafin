@@ -1,12 +1,15 @@
 package com.masfitatech.koprafin
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.ForegroundColorSpan
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
@@ -20,6 +23,7 @@ import com.masfitatech.koprafin.page.main.viewmodel.HistoryViewModel
 import com.masfitatech.koprafin.utils.DateUtils
 import com.masfitatech.koprafin.utils.DialogUtils
 import com.masfitatech.koprafin.utils.RupiahUtils
+import com.masfitatech.koprafin.utils.StatusStyle
 
 class HistoryDetailFragment : Fragment() {
 
@@ -57,10 +61,10 @@ class HistoryDetailFragment : Fragment() {
             binding.tvCategory.text = detail.product?.category?.name ?: "-"
 
             val installment = detail.installment?.toDoubleOrNull() ?: 0.0
-            binding.tvTenor.text = "${detail.tenor} x ${RupiahUtils.toRupiah(installment)}"
+            binding.tvTenor.text = "${detail.tenor} bulan × ${RupiahUtils.toRupiah(installment)}"
 
             val total = detail.total?.toDoubleOrNull() ?: 0.0
-            binding.tvTotal.text = "Total: ${RupiahUtils.toRupiah(total)}"
+            binding.tvTotal.text = RupiahUtils.toRupiah(total)
 
             binding.tvCreatedAt.text = "Diajukan: ${DateUtils.formatDate(detail.createdAt)}"
 
@@ -75,38 +79,15 @@ class HistoryDetailFragment : Fragment() {
 
             binding.timelineList.removeAllViews()
 
-            detail.histories.forEach { history ->
-
-                val textView = TextView(requireContext()).apply {
-                    textSize = 14f
-                    setPadding(0, 6, 0, 6)
-                }
-
-                val statusText = "${history.status}  • ${DateUtils.formatDate(history.createdAt)}"
-
-                if (history.remarks.isNullOrEmpty()) {
-                    // Jika tidak ada remarks → tampilkan biasa
-                    textView.text = statusText
-                } else {
-                    val remarksText = "\n${history.remarks}"
-                    val fullText = statusText + remarksText
-
-                    val spannable = SpannableString(fullText)
-
-                    // Warnai remarks
-                    val remarksColor = ContextCompat.getColor(requireContext(), R.color.colorTextSecondary)
-
-                    spannable.setSpan(
-                        ForegroundColorSpan(remarksColor),
-                        statusText.length,           // mulai dari setelah statusText
-                        fullText.length,             // sampai akhir
-                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            detail.histories.forEachIndexed { index, history ->
+                binding.timelineList.addView(
+                    buildTimelineRow(
+                        status = history.status,
+                        date = DateUtils.formatDate(history.createdAt),
+                        remarks = history.remarks,
+                        isLast = index == detail.histories.lastIndex
                     )
-
-                    textView.text = spannable
-                }
-
-                binding.timelineList.addView(textView)
+                )
             }
 
             if (role == "admin" && detail.status == "pengajuan") {
@@ -135,22 +116,73 @@ class HistoryDetailFragment : Fragment() {
         }
     }
 
-    private fun setStatusBadge(status: String?) {
-        val st = status?.lowercase() ?: ""
+    private val Int.dp get() = (this * resources.displayMetrics.density).toInt()
 
-        binding.tvStatus.text = st.replaceFirstChar { it.uppercase() }
-
+    /** Satu baris timeline: titik + garis di kiri, status/tanggal/catatan di kanan. */
+    private fun buildTimelineRow(status: String?, date: String?, remarks: String?, isLast: Boolean): View {
         val ctx = requireContext()
-        val colorRes = when (st) {
-            "pengajuan" -> R.color.statusPengajuan
-            "berjalan"  -> R.color.statusBerjalan
-            "selesai"   -> R.color.colorPrimary
-            "ditolak"   -> R.color.statusDitolak
-            else        -> R.color.statusDefault
+        val colors = StatusStyle.colorsFor(status)
+
+        val row = LinearLayout(ctx).apply {
+            orientation = LinearLayout.HORIZONTAL
         }
 
-        binding.tvStatus.backgroundTintList =
-            ContextCompat.getColorStateList(ctx, colorRes)
+        val rail = LinearLayout(ctx).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_HORIZONTAL
+            layoutParams = LinearLayout.LayoutParams(20.dp, LinearLayout.LayoutParams.MATCH_PARENT)
+        }
+        val dot = View(ctx).apply {
+            background = ContextCompat.getDrawable(ctx, R.drawable.timeline_circle)
+            layoutParams = LinearLayout.LayoutParams(14.dp, 14.dp).apply { topMargin = 3.dp }
+        }
+        rail.addView(dot)
+        if (!isLast) {
+            rail.addView(View(ctx).apply {
+                setBackgroundColor(ContextCompat.getColor(ctx, R.color.colorOutline))
+                layoutParams = LinearLayout.LayoutParams(2.dp, 0, 1f).apply { topMargin = 2.dp }
+            })
+        }
+
+        val content = LinearLayout(ctx).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
+                marginStart = 12.dp
+            }
+            setPadding(0, 0, 0, if (isLast) 0 else 16.dp)
+        }
+        content.addView(TextView(ctx).apply {
+            text = status?.replaceFirstChar { it.uppercase() } ?: "-"
+            textSize = 14f
+            setTypeface(typeface, Typeface.BOLD)
+            setTextColor(ContextCompat.getColor(ctx, colors.text))
+        })
+        content.addView(TextView(ctx).apply {
+            text = date ?: "-"
+            textSize = 12f
+            setTextColor(ContextCompat.getColor(ctx, R.color.colorTextSecondary))
+        })
+        if (!remarks.isNullOrEmpty()) {
+            content.addView(TextView(ctx).apply {
+                text = remarks
+                textSize = 13f
+                setTextColor(ContextCompat.getColor(ctx, R.color.colorTextPrimary))
+                background = ContextCompat.getDrawable(ctx, R.drawable.bg_card_mint)
+                setPadding(12.dp, 8.dp, 12.dp, 8.dp)
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                ).apply { topMargin = 6.dp }
+            })
+        }
+
+        row.addView(rail)
+        row.addView(content)
+        return row
+    }
+
+    private fun setStatusBadge(status: String?) {
+        StatusStyle.apply(binding.tvStatus, status)
     }
 
 

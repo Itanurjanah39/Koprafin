@@ -1,34 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:padding="24dp"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="20dp"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="8dp"
-    android:layout_margin="12dp">
+    app:cardCornerRadius="24dp"
+    app:cardElevation="0dp">
 
     <LinearLayout
-        android:layout_margin="22sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="24dp"
+        android:paddingEnd="28dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+
         <ProgressBar
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:indeterminate="true"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="16dp"/>
+            android:indeterminateTint="@color/brandPrimary" />
 
         <TextView
             android:id="@+id/tvText"
-            android:layout_gravity="center_vertical"
-            android:text="Loading..."
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Memuat..."
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorTextPrimary" />
     </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>

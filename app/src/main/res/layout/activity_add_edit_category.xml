@@ -32,7 +32,7 @@
             android:text="Kategori Produk"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#2B2B2B"/>
+            android:textColor="@color/colorTextPrimary"/>
 
         <EditText
             android:id="@+id/etCategory"
@@ -51,7 +51,7 @@
             android:text="Tenor"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#2B2B2B"/>
+            android:textColor="@color/colorTextPrimary"/>
 
         <LinearLayout
             android:layout_marginTop="8dp"
@@ -124,7 +124,7 @@
             android:text="Margin"
             android:textSize="15sp"
             android:textStyle="bold"
-            android:textColor="#2B2B2B"/>
+            android:textColor="@color/colorTextPrimary"/>
 
         <EditText
             android:id="@+id/etMargin"
@@ -150,11 +150,13 @@
         android:id="@+id/btnSaveCategory"
         android:layout_marginTop="24dp"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="52dp"
         android:background="@drawable/item_button_primary"
         android:text="Simpan"
-        android:textStyle="bold"
+        
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+            android:fontFamily="@font/poppins_semi_bold"
+            android:stateListAnimator="@null"/>
 </LinearLayout>

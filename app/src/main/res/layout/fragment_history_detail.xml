@@ -1,307 +1,478 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#F7F8FA"
+    android:layout_height="match_parent"
+    android:overScrollMode="never"
     android:scrollbars="none">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="28dp">
 
         <ProgressBar
             android:id="@+id/progressBar"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:layout_gravity="center"
+            android:layout_margin="12dp"
+            android:indeterminateTint="@color/brandPrimary"
             android:visibility="gone" />
 
+        <!-- ===== PRODUK ===== -->
         <LinearLayout
             android:id="@+id/cardProduct"
-            android:layout_marginTop="12dp"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/bg_ios_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_ios_card"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-            <ImageView
-                android:id="@+id/imgProduct"
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/top_rounded"
-                android:clipToOutline="true"
-                android:scaleType="centerCrop" />
+                android:layout_height="190dp"
+                app:cardBackgroundColor="@color/brandMintSoft"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvCategory"
-                android:layout_marginTop="8dp"
-                android:textSize="13sp"
-                android:textColor="#777" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvProductName"
-                android:layout_marginTop="6dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="#1C1C1E" />
+                <ImageView
+                    android:id="@+id/imgProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="Foto produk" />
+            </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvProductDescription"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textColor="#555555" />
+                android:orientation="vertical"
+                android:padding="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvStatus"
-                android:layout_marginTop="10dp"
-                android:textSize="13sp"
-                android:textColor="@android:color/white"
-                android:background="@drawable/bg_status_badge" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_chip_mint"
+                        android:text="Kategori"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/brandDark" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/tvStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        style="@style/Koprafin.Badge" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvProductName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Nama produk"
+                    style="@style/TextTitle_Bold"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/tvProductDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:lineSpacingExtra="3dp"
+                    android:text="-"
+                    android:textSize="13sp"
+                    android:textColor="@color/colorTextSecondary" />
+            </LinearLayout>
         </LinearLayout>
 
-
-        <!-- CREDIT INFO -->
+        <!-- ===== INFORMASI KREDIT ===== -->
         <LinearLayout
-            android:layout_marginTop="16dp"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/bg_ios_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_hero_gradient"
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Informasi Kredit"
+                android:text="Total pinjaman"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="#1C1C1E"/>
+                android:textColor="@color/brandOnDarkSoft" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvTenor"
-                android:layout_marginTop="10dp"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/tvTotal"
-                android:layout_marginTop="4dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary" />
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvCreatedAt"
-                android:layout_marginTop="4dp"
-                android:textSize="13sp"
-                android:textColor="#777" />
+                android:layout_marginTop="6dp"
+                android:text="Rp0"
+                style="@style/Koprafin.Text.Display"
+                android:textSize="22sp"
+                android:textColor="@color/white" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_glass_panel"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvTenor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_v_wallet"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/white"
+                    android:gravity="center_vertical"
+                    android:text="-"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white" />
+
+                <TextView
+                    android:id="@+id/tvCreatedAt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:drawableStart="@drawable/ic_v_calendar"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/brandOnDarkSoft"
+                    android:gravity="center_vertical"
+                    android:text="-"
+                    android:textSize="13sp"
+                    android:textColor="@color/brandOnDarkSoft" />
+            </LinearLayout>
         </LinearLayout>
 
-
-        <!-- APPLICANT INFO -->
+        <!-- ===== DATA PENGAJU ===== -->
         <LinearLayout
-            android:layout_marginTop="16dp"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/bg_ios_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_ios_card"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Data Pengaju"
-                android:textStyle="bold"
-                android:textColor="#1C1C1E"
-                android:textSize="16sp" />
+                style="@style/Koprafin.Text.Section" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nama"
-                android:layout_marginTop="10dp"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary"/>
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvApplicantName"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_icon_soft"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_v_person"
+                    android:contentDescription="@null"
+                    app:tint="@color/brandPrimary" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nomor Identitas (NIK)"
-                android:layout_marginTop="6dp"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvApplicantNIK"
-                android:layout_marginTop="4dp"
-                android:textStyle="bold"
-                android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nomor Hp / WA"
-                android:layout_marginTop="6dp"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvApplicantPhone"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorTextSecondary" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvApplicantName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        style="@style/Koprafin.Text.Value" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Perusahaan"
-                android:layout_marginTop="6dp"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvApplicantCompany"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Divisi"
-                android:layout_marginTop="6dp"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvApplicantDivision"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_icon_soft"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_v_card"
+                    android:contentDescription="@null"
+                    app:tint="@color/brandPrimary" />
 
-            <TextView
-                android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nomor Identitas (NIK)"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorTextSecondary" />
+
+                    <TextView
+                        android:id="@+id/tvApplicantNIK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        style="@style/Koprafin.Text.Value" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Bergabung Pada"
-                android:layout_marginTop="6dp"
-                android:textSize="13sp"
-                android:textColor="@color/colorTextSecondary" />
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_icon_soft"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_v_phone"
+                    android:contentDescription="@null"
+                    app:tint="@color/brandPrimary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nomor HP / WA"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorTextSecondary" />
+
+                    <TextView
+                        android:id="@+id/tvApplicantPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        style="@style/Koprafin.Text.Value" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvApplicantWorkEntry"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_icon_soft"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_v_business"
+                    android:contentDescription="@null"
+                    app:tint="@color/brandPrimary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Perusahaan"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorTextSecondary" />
+
+                    <TextView
+                        android:id="@+id/tvApplicantCompany"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        style="@style/Koprafin.Text.Value" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_icon_soft"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_v_group"
+                    android:contentDescription="@null"
+                    app:tint="@color/brandPrimary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Divisi"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorTextSecondary" />
+
+                    <TextView
+                        android:id="@+id/tvApplicantDivision"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        style="@style/Koprafin.Text.Value" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_icon_soft"
+                    android:padding="9dp"
+                    android:src="@drawable/ic_v_calendar"
+                    android:contentDescription="@null"
+                    app:tint="@color/brandPrimary" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="12dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Bergabung pada"
+                        android:textSize="11sp"
+                        android:textColor="@color/colorTextSecondary" />
+
+                    <TextView
+                        android:id="@+id/tvApplicantWorkEntry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        style="@style/Koprafin.Text.Value" />
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
-
-        <!-- HISTORY TIMELINE -->
+        <!-- ===== TIMELINE ===== -->
         <LinearLayout
             android:id="@+id/containerTimeline"
-            android:layout_marginTop="16dp"
-            android:padding="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/bg_ios_card"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/bg_ios_card"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Riwayat Status"
-                android:textStyle="bold"
-                android:textColor="#1C1C1E"
-                android:textSize="16sp" />
+                style="@style/Koprafin.Text.Section" />
 
             <LinearLayout
                 android:id="@+id/timelineList"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="vertical" />
         </LinearLayout>
 
-
-        <!-- ADMIN ACTION -->
+        <!-- ===== AKSI ADMIN ===== -->
         <LinearLayout
             android:id="@+id/llAdminAction"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:visibility="gone">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnApprove"
-                android:text="Terima"
+                android:id="@+id/btnReject"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
-                android:textColor="@color/white"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:background="@drawable/item_button_primary"/>
+                style="@style/Koprafin.Button.Outline"
+                android:text="Tolak"
+                android:textColor="@color/statusDitolak" />
 
-            <Space android:layout_width="16dp" android:layout_height="1dp"/>
+            <Space
+                android:layout_width="12dp"
+                android:layout_height="1dp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnReject"
-                android:text="Tolak"
+                android:id="@+id/btnApprove"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="48dp"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                android:textColor="@color/colorTextPrimary"
-                android:background="@drawable/item_button_cancel"/>
+                style="@style/Koprafin.Button.Primary"
+                android:text="Terima" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:layout_marginBottom="12dp"
-            android:layout_marginTop="12dp"
-            android:visibility="gone"
             android:id="@+id/btnFinish"
-            android:text="Selesai"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:textStyle="bold"
-            android:background="@drawable/item_button_secondary"/>
-
+            android:layout_marginTop="22dp"
+            style="@style/Koprafin.Button.Primary"
+            android:text="Tandai Lunas / Selesai"
+            android:visibility="gone" />
     </LinearLayout>
-
 </ScrollView>

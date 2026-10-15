@@ -2,90 +2,155 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
+    android:background="@drawable/bg_bottomsheet_rounded"
     android:orientation="vertical"
-    android:background="@drawable/bg_bottomsheet_rounded">
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="24dp">
 
     <View
         android:id="@+id/dragHandle"
-        android:layout_width="40dp"
+        android:layout_width="44dp"
         android:layout_height="5dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="12dp"
-        android:alpha="0.6"
-        android:backgroundTint="#C7C7C7"
-        android:clipToOutline="true"
-        android:background="@drawable/bg_drag_handle"/>
-
+        android:background="@drawable/bg_drag_handle" />
 
     <TextView
-        android:layout_marginTop="12dp"
-        android:id="@+id/tvHargaValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Simulasi Kredit"
+        style="@style/TextTitle_Bold"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Geser untuk memilih lama cicilan"
+        android:textSize="13sp"
+        android:textColor="@color/colorTextSecondary" />
+
+    <!-- Harga produk -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rp 0"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="@color/colorTextPrimary"/>
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_card_mint"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="14dp">
 
-    <!-- TENOR -->
-    <TextView
-        android:id="@+id/tvTenorLabel"
-        android:layout_marginTop="8dp"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Harga produk"
+            android:textSize="13sp"
+            android:textColor="@color/brandDeep" />
+
+        <TextView
+            android:id="@+id/tvHargaValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp0"
+            style="@style/TextTitle_Bold"
+            android:textSize="15sp"
+            android:textColor="@color/brandDeep" />
+    </LinearLayout>
+
+    <!-- Tenor -->
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Tenor (bulan)"
-        android:textStyle="bold"/>
+        android:layout_marginTop="22dp"
+        android:gravity="bottom"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvTenor"
-        android:layout_marginTop="4dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="6"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tvTenorLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="6dp"
+            android:text="Tenor"
+            style="@style/Koprafin.Text.FieldLabel"
+            android:layout_marginTop="0dp" />
 
-    <!-- SLIDER TENOR -->
+        <TextView
+            android:id="@+id/tvTenor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            style="@style/Koprafin.Text.Display"
+            android:textSize="32sp"
+            android:textColor="@color/brandPrimary" />
 
-    <!-- ANGSRUAN -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginBottom="7dp"
+            android:text="bulan"
+            android:textSize="14sp"
+            android:textColor="@color/colorTextSecondary" />
+    </LinearLayout>
+
     <SeekBar
         android:id="@+id/seekTenor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:max="12" />
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="-8dp"
+        android:layout_marginEnd="-8dp"
+        android:max="12"
+        android:maxHeight="8dp"
+        android:minHeight="8dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:progressDrawable="@drawable/seekbar_progress"
+        android:splitTrack="false"
+        android:thumb="@drawable/seekbar_thumb" />
 
-    <TextView
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Angsuran / Bulan"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/tvAngsuran"
+    <!-- Angsuran -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rp 0"
-        android:textSize="22sp"
-        android:textColor="@color/colorPrimary"
-        android:textStyle="bold"/>
+        android:layout_marginTop="18dp"
+        android:background="@drawable/bg_hero_gradient"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Estimasi angsuran / bulan"
+            android:textSize="12sp"
+            android:textColor="@color/brandOnDarkSoft" />
+
+        <TextView
+            android:id="@+id/tvAngsuran"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Rp0"
+            style="@style/Koprafin.Text.Display"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="Nilai final mengikuti persetujuan admin koperasi"
+            android:textSize="11sp"
+            android:textColor="@color/brandOnDarkSoft" />
+    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_marginStart="12sp"
-        android:layout_marginEnd="12sp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
         android:id="@+id/btnAjukan"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/item_button_secondary"
-        android:textStyle="bold"
-        android:textAllCaps="false"
-        android:text="Ajukan Kredit"
-        android:textColor="@color/white"/>
-
-
+        android:layout_marginTop="22dp"
+        style="@style/Koprafin.Button.Primary"
+        android:text="Ajukan Kredit" />
 </LinearLayout>
