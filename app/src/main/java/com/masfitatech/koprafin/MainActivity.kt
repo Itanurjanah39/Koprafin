@@ -50,14 +50,23 @@ class MainActivity : AppCompatActivity() {
         settingItem.isVisible = role == "admin"
 
         binding.navigationView.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.nav_home -> replaceFragment(HomeFragment())
-                R.id.nav_catalog -> replaceFragment(CatalogFragment())
-                R.id.nav_history -> replaceFragment(HistoryFragment())
-                R.id.nav_profile -> replaceFragment(ProfileFragment())
-                R.id.nav_employee -> replaceFragment(EmployeeFragment())
-                R.id.nav_setting -> replaceFragment(SettingFragment())
-                R.id.nav_logout -> DialogUtils.showConfirmDialog(
+            navigateTo(menuItem.itemId)
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            true
+        }
+    }
+
+    /** Pindah halaman berdasarkan id menu drawer; dipakai juga oleh tombol "Lihat Semua" & profil. */
+    fun navigateTo(menuId: Int) {
+        when (menuId) {
+            R.id.nav_home -> replaceFragment(HomeFragment())
+            R.id.nav_catalog -> replaceFragment(CatalogFragment())
+            R.id.nav_history -> replaceFragment(HistoryFragment())
+            R.id.nav_profile -> replaceFragment(ProfileFragment())
+            R.id.nav_employee -> replaceFragment(EmployeeFragment())
+            R.id.nav_setting -> replaceFragment(SettingFragment())
+            R.id.nav_logout -> {
+                DialogUtils.showConfirmDialog(
                     context = this,
                     title = "Konfirmasi Logout",
                     message = "Apakah anda yakin ingin keluar?",
@@ -67,15 +76,23 @@ class MainActivity : AppCompatActivity() {
                         finishAffinity()
                     }
                 )
+                return
             }
-            binding.drawerLayout.closeDrawer(GravityCompat.START)
-            true
         }
+        binding.navigationView.setCheckedItem(menuId)
+    }
+
+    /** Tombol profil bulat di kanan atas, hanya tampil di Beranda. */
+    fun showProfileShortcut(show: Boolean) {
+        binding.btnProfile.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     private fun setupMenuButton() {
         binding.btnMenu.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+        binding.btnProfile.setOnClickListener {
+            navigateTo(R.id.nav_profile)
         }
     }
 

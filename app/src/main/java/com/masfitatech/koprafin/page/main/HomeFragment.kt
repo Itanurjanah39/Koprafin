@@ -12,17 +12,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayoutMediator
 import com.masfitatech.koprafin.MainActivity
 import com.masfitatech.koprafin.R
 import com.masfitatech.koprafin.data.auth.AuthToken
 import com.masfitatech.koprafin.data.auth.SessionManager
-import com.masfitatech.koprafin.data.network.ApiClient
 import com.masfitatech.koprafin.databinding.FragmentHomeBinding
 import com.masfitatech.koprafin.page.login.LoginActivity
-import com.masfitatech.koprafin.page.main.adapter.BannerCarouselAdapter
-import com.masfitatech.koprafin.page.main.adapter.ProductAdapter
+import com.masfitatech.koprafin.page.main.adapter.HeroCarouselAdapter
+import com.masfitatech.koprafin.page.main.adapter.HomeProductAdapter
 import com.masfitatech.koprafin.page.main.adapter.ShimmerAdapter
 import com.masfitatech.koprafin.page.main.viewmodel.*
 
@@ -33,29 +31,29 @@ class HomeFragment : Fragment() {
     private lateinit var sessionManager: SessionManager
     private lateinit var token: String
     private var katalogLoaded = false
-    private lateinit var productAdapter: ProductAdapter
+    private lateinit var productAdapter: HomeProductAdapter
     private lateinit var shimmerAdapter: ShimmerAdapter
-    private lateinit var bannerAdapter: BannerCarouselAdapter
+    private lateinit var heroAdapter: HeroCarouselAdapter
 
-   //viewmodel
+    // viewmodel
     private val bannerViewModel: BannerViewModel by activityViewModels()
     private val katalogViewModel: KatalogViewModel by activityViewModels()
     private val creditStatusViewModel: CreditStatusViewModel by viewModels()
     private val accountViewModel: AccountViewModel by viewModels()
 
-    //autoscroll banner
+    // autoscroll carousel hero
     private val bannerHandler = Handler(Looper.getMainLooper())
 
     private val bannerRunnable = object : Runnable {
         override fun run() {
-            if (!::bannerAdapter.isInitialized) return
+            val b = _binding ?: return
+            if (!::heroAdapter.isInitialized) return
 
-            val count = bannerAdapter.itemCount
+            val count = heroAdapter.itemCount
             if (count > 1) {
-                binding.vpBanner.currentItem =
-                    (binding.vpBanner.currentItem + 1) % count
-                bannerHandler.postDelayed(this, 4000)
+                b.vpBanner.currentItem = (b.vpBanner.currentItem + 1) % count
             }
+            bannerHandler.postDelayed(this, 5000)
         }
     }
 
@@ -71,14 +69,17 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as MainActivity).setToolbarTitle("Beranda")
+        val main = activity as MainActivity
+        main.setToolbarTitle("Beranda")
+        main.showProfileShortcut(true)
 
         sessionManager = SessionManager(requireContext())
         token = AuthToken.tokenLogin(requireContext()).orEmpty()
         setGreeting(sessionManager.getName())
 
-        setupBannerCarousel()
+        setupHeroCarousel()
         setupRecycler()
+        setupActions()
         setupSwipeRefresh()
         observeBanner()
         observeAccount()
@@ -96,7 +97,8 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        bannerHandler.postDelayed(bannerRunnable, 4000)
+        bannerHandler.removeCallbacks(bannerRunnable)
+        bannerHandler.postDelayed(bannerRunnable, 5000)
     }
 
     override fun onPause() {
@@ -107,42 +109,50 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         bannerHandler.removeCallbacks(bannerRunnable)
+        (activity as? MainActivity)?.showProfileShortcut(false)
         _binding = null
     }
 
-    private fun setupRecycler() {
+    // =====================================================
+    // SETUP
+    // =====================================================
+    private fun setGreeting(fullName: String?) {
+        val name = fullName?.trim().orEmpty()
+        binding.tvGreetingName.text = if (name.isEmpty()) "Halo 👋" else "Halo, $name 👋"
+    }
 
-        shimmerAdapter = ShimmerAdapter(10)
+    private fun setupHeroCarousel() {
+        heroAdapter = HeroCarouselAdapter()
+
+        binding.vpBanner.apply {
+            adapter = heroAdapter
+            offscreenPageLimit = 3
+        }
+
+        TabLayoutMediator(binding.tabIndicator, binding.vpBanner) { _, _ -> }.attach()
+        updateIndicatorVisibility()
+    }
+
+    private fun setupRecycler() {
+        shimmerAdapter = ShimmerAdapter(4)
         binding.recyclerShimmer.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = shimmerAdapter
         }
 
-        productAdapter = ProductAdapter(mutableListOf()) { product ->
+        productAdapter = HomeProductAdapter { product ->
             openDetail(product.id ?: 0)
         }
-
         binding.recyclerProductsHome.apply {
             layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = productAdapter
         }
     }
 
-    private fun setupBannerCarousel() {
-        bannerAdapter = BannerCarouselAdapter(emptyList())
-
-        binding.vpBanner.apply {
-            adapter = bannerAdapter
-            offscreenPageLimit = 5
-        }
-
-        TabLayoutMediator(binding.tabIndicator, binding.vpBanner) { _, _ -> }.attach()
-    }
-
-    private fun setGreeting(fullName: String?) {
-        val firstName = fullName?.trim()?.split(" ")?.firstOrNull().orEmpty()
-        binding.tvGreetingName.text =
-            if (firstName.isEmpty()) "Halo 👋" else "Halo, $firstName 👋"
+    private fun setupActions() {
+        val main = activity as MainActivity
+        binding.btnSeeAllCredit.setOnClickListener { main.navigateTo(R.id.nav_history) }
+        binding.btnSeeAllProduct.setOnClickListener { main.navigateTo(R.id.nav_catalog) }
     }
 
     private fun setupSwipeRefresh() {
@@ -159,26 +169,25 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun updateIndicatorVisibility() {
+        binding.tabIndicator.visibility =
+            if (heroAdapter.itemCount > 1) View.VISIBLE else View.INVISIBLE
+    }
+
+    // =====================================================
+    // OBSERVER
+    // =====================================================
     private fun observeBanner() {
         bannerViewModel.bannersActive.observe(viewLifecycleOwner) { banners ->
-            if (!banners.isNullOrEmpty()) {
-                binding.vpBanner.visibility = View.VISIBLE
-                binding.tabIndicator.visibility = View.VISIBLE
-                bannerAdapter.updateData(banners)
-            } else {
-                binding.vpBanner.visibility = View.GONE
-                binding.tabIndicator.visibility = View.GONE
-            }
+            // Slide brand selalu ada; banner aktif ditambahkan setelahnya
+            heroAdapter.updateData(banners.orEmpty())
+            updateIndicatorVisibility()
         }
     }
 
     private fun observeAccount() {
         accountViewModel.accountData.observe(viewLifecycleOwner) { data ->
             data?.employee?.name?.let { setGreeting(it) }
-            Glide.with(requireContext())
-                .load(ApiClient.BASE_URL_IMAGE + data?.employee?.avatar)
-                .placeholder(R.drawable.user)
-                .into(binding.civAvatar)
         }
 
         accountViewModel.errorMessage.observe(viewLifecycleOwner) {
@@ -199,7 +208,6 @@ class HomeFragment : Fragment() {
             Toast.LENGTH_LONG
         ).show()
 
-        // hapus token
         sessionManager.clearSession()
 
         val intent = Intent(requireContext(), LoginActivity::class.java)
@@ -208,28 +216,22 @@ class HomeFragment : Fragment() {
         requireActivity().finishAffinity()
     }
 
-
     private fun observeViewModel() {
-
         katalogViewModel.products.observe(viewLifecycleOwner) { products ->
-            when {
-                products.isNullOrEmpty() -> {
-                    binding.recyclerProductsHome.visibility = View.GONE
-                    binding.recyclerShimmer.visibility = View.GONE
-                    binding.llEmptyData.visibility = View.VISIBLE
-                }
-                else -> {
-                    binding.recyclerProductsHome.visibility = View.VISIBLE
-                    binding.recyclerShimmer.visibility = View.GONE
-                    binding.llEmptyData.visibility = View.GONE
-                    productAdapter.updateData(products)
-                }
+            if (products.isNullOrEmpty()) {
+                binding.recyclerProductsHome.visibility = View.GONE
+                binding.recyclerShimmer.visibility = View.GONE
+                binding.llEmptyData.visibility = View.VISIBLE
+            } else {
+                binding.recyclerProductsHome.visibility = View.VISIBLE
+                binding.recyclerShimmer.visibility = View.GONE
+                binding.llEmptyData.visibility = View.GONE
+                productAdapter.updateData(products)
             }
         }
 
         katalogViewModel.isLoading.observe(viewLifecycleOwner) { loading ->
-            binding.recyclerShimmer.visibility =
-                if (loading) View.VISIBLE else View.GONE
+            binding.recyclerShimmer.visibility = if (loading) View.VISIBLE else View.GONE
         }
 
         katalogViewModel.errorMessage.observe(viewLifecycleOwner) {

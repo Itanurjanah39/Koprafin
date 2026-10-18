@@ -60,6 +60,18 @@
                 android:contentDescription="Edit"
                 android:visibility="gone"
                 app:tint="@color/brandPrimary" />
+            <ImageView
+                android:id="@+id/btn_profile"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_icon_circle_button"
+                android:padding="10dp"
+                android:src="@drawable/ic_v_person_outline"
+                android:contentDescription="Profil"
+                android:visibility="gone"
+                app:tint="@color/brandDeep" />
         </RelativeLayout>
 
         <FrameLayout

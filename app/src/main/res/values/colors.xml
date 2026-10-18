@@ -48,4 +48,18 @@
     <color name="statusDitolakBg">#FDE7E7</color>
     <color name="statusDefault">#6B7F7B</color>
     <color name="statusDefaultBg">#EDF2F1</color>
+
+    <!-- ===== Tile ringkasan kredit (beranda) ===== -->
+    <color name="tilePengajuanBg">#FFF4DC</color>
+    <color name="tilePengajuanIcon">#F2A516</color>
+    <color name="tilePengajuanText">#C77A00</color>
+    <color name="tileBerjalanBg">#E6F0FF</color>
+    <color name="tileBerjalanIcon">#2484F0</color>
+    <color name="tileBerjalanText">#1D6FD1</color>
+    <color name="tileSelesaiBg">#E3F7EE</color>
+    <color name="tileSelesaiIcon">#16B26A</color>
+    <color name="tileSelesaiText">#00805F</color>
+    <color name="tileDitolakBg">#FDE8E8</color>
+    <color name="tileDitolakIcon">#E04848</color>
+    <color name="tileDitolakText">#C83232</color>
 </resources>
