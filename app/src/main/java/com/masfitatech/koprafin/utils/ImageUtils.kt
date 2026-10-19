@@ -41,11 +41,14 @@ object ImageUtils {
     ): PreparedImage = withContext(Dispatchers.IO) {
         val resolver = context.applicationContext.contentResolver
 
+        // inJustDecodeBounds hanya membaca ukuran: decodeStream SELALU mengembalikan null di mode ini,
+        // jadi yang dicek adalah stream-nya terbuka dan outWidth/outHeight terisi.
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        resolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, bounds) }
-            ?: throw IOException("Gambar tidak dapat dibaca")
+        val stream = resolver.openInputStream(uri)
+            ?: throw IOException("Gambar tidak dapat dibuka")
+        stream.use { BitmapFactory.decodeStream(it, null, bounds) }
         if (bounds.outWidth <= 0 || bounds.outHeight <= 0) {
-            throw IOException("File yang dipilih bukan gambar yang valid")
+            throw IOException("Format gambar tidak didukung, gunakan JPG atau PNG")
         }
 
         var sample = 1
@@ -53,7 +56,7 @@ object ImageUtils {
 
         val decoded = resolver.openInputStream(uri)?.use {
             BitmapFactory.decodeStream(it, null, BitmapFactory.Options().apply { inSampleSize = sample })
-        } ?: throw IOException("Gambar tidak dapat dibaca")
+        } ?: throw IOException("Gambar gagal diproses, coba gambar lain")
 
         val scale = min(1f, maxSide.toFloat() / max(decoded.width, decoded.height))
         val w = (decoded.width * scale).roundToInt().coerceAtLeast(1)
