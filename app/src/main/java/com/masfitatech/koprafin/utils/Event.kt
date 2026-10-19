@@ -1,0 +1,15 @@
+package com.masfitatech.koprafin.utils
+
+/** Pembungkus LiveData untuk kejadian sekali pakai (toast, tutup dialog) agar tidak terulang saat layar dibuat ulang. */
+class Event<out T>(private val content: T) {
+    var hasBeenHandled = false
+        private set
+
+    fun getContentIfNotHandled(): T? =
+        if (hasBeenHandled) null else {
+            hasBeenHandled = true
+            content
+        }
+
+    fun peekContent(): T = content
+}

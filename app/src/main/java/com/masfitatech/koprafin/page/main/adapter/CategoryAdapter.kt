@@ -31,8 +31,8 @@ class CategoryAdapter(
         val item = list[position]
 
         holder.binding.tvNameCategory.text = item.name
-        holder.binding.tvTenor.text = "${item.minTenor} - ${item.maksTenor} Bulan"
-        holder.binding.tvMargin.text = item.margin.toString()
+        holder.binding.tvTenor.text = "${item.minTenor ?: 0}–${item.maksTenor ?: 0} bulan"
+        holder.binding.tvMargin.text = "Margin ${item.margin ?: 0}%"
 
         holder.binding.root.setOnClickListener {
             onEdit(item)

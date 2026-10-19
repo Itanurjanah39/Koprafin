@@ -4,169 +4,223 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.masfitatech.koprafin.data.model.ApiResponse
 import com.masfitatech.koprafin.data.model.BannerStatusRequest
 import com.masfitatech.koprafin.data.model.DataBanner
 import com.masfitatech.koprafin.data.network.ApiClient
+import com.masfitatech.koprafin.utils.Event
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
+import retrofit2.Response
+import java.io.IOException
+import java.net.SocketTimeoutException
 
+/**
+ * Banner (dipakai Beranda & Pengaturan, di-share lewat activityViewModels).
+ *
+ * Endpoint:
+ *  GET  banners                 -> daftar
+ *  POST banners (multipart)     -> image + status
+ *  PUT  banners/{id}/status     -> {"status": 0|1}
+ *  PUT  banners/{id}/delete     -> hapus
+ */
 class BannerViewModel : ViewModel() {
 
-    val bannersActive = MutableLiveData<List<DataBanner>>()
-    val banners = MutableLiveData<List<DataBanner>>()
-    val isLoading = MutableLiveData<Boolean>()
-    val success = MutableLiveData<Boolean>()
-    val deleteSuccess = MutableLiveData<Boolean>()
-    val errorMessage = MutableLiveData<String?>()
+    private companion object { const val TAG = "BannerVM" }
 
+    /** Semua banner (Pengaturan). */
+    val banners = MutableLiveData<List<DataBanner>>()
+
+    /** Banner aktif saja (carousel Beranda). */
+    val bannersActive = MutableLiveData<List<DataBanner>>()
+
+    val isLoading = MutableLiveData(false)
+    val isUploading = MutableLiveData(false)
+
+    /** Id banner yang sedang diproses (toggle/hapus) — UI menonaktifkan kontrolnya. */
+    val pendingIds = MutableLiveData<Set<Int>>(emptySet())
+
+    val message = MutableLiveData<Event<String>>()
+    val uploadSuccess = MutableLiveData<Event<Unit>>()
+
+    private var loadJob: Job? = null
+
+    // =====================================================
+    // LIST
+    // =====================================================
     fun getActiveBanners(token: String) {
         viewModelScope.launch {
             try {
                 val response = ApiClient.instance.getBanner(token)
-                if (response.isSuccessful) {
-                    val list = response.body()?.data ?: emptyList()
-                    bannersActive.postValue(list.filter { it.status == 1 })
-                }
+                if (response.isSuccessful) publish(response.body()?.data.orEmpty())
+                else Log.e(TAG, "getActiveBanners ${response.code()}")
             } catch (e: Exception) {
-                errorMessage.postValue(e.message)
+                Log.e(TAG, "getActiveBanners", e)
             }
         }
     }
+
     fun getBanners(token: String) {
-        viewModelScope.launch {
+        loadJob?.cancel()
+        loadJob = viewModelScope.launch {
+            isLoading.value = true
             try {
-                isLoading.postValue(true)
                 val response = ApiClient.instance.getBanner(token)
-
                 if (response.isSuccessful) {
-                    banners.postValue(response.body()?.data ?: emptyList())
+                    publish(response.body()?.data.orEmpty())
                 } else {
-                    errorMessage.postValue("Gagal mengambil banner")
+                    notify(errorFrom(response, "Gagal memuat banner"))
                 }
             } catch (e: Exception) {
-                errorMessage.postValue(e.message)
+                if (e !is kotlinx.coroutines.CancellationException) notify(errorFrom(e))
             } finally {
-                isLoading.postValue(false)
+                isLoading.value = false
             }
         }
     }
 
-    fun createBanner(
-        token: String,
-        status: Int,
-        imagePart: MultipartBody.Part
-    ) {
+    // =====================================================
+    // CREATE
+    // =====================================================
+    fun createBanner(token: String, status: Int, imagePart: MultipartBody.Part) {
+        if (isUploading.value == true) return
+        viewModelScope.launch {
+            isUploading.value = true
+            try {
+                val statusBody = status.toString().toRequestBody("text/plain".toMediaType())
+                val response = ApiClient.instance.createBanner(token, statusBody, imagePart)
+
+                if (response.isSuccessful && response.body()?.success != false) {
+                    uploadSuccess.value = Event(Unit)
+                    notify("Banner berhasil diunggah")
+                    getBanners(token)
+                } else {
+                    notify(errorFrom(response, "Gagal mengunggah banner"))
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "createBanner", e)
+                notify(errorFrom(e))
+            } finally {
+                isUploading.value = false
+            }
+        }
+    }
+
+    // =====================================================
+    // UPDATE STATUS (optimistic + rollback)
+    // =====================================================
+    fun updateStatus(token: String, id: Int, status: Int) {
+        if (isPending(id)) return
+        val oldStatus = banners.value?.firstOrNull { it.id == id }?.status ?: return
+        if (oldStatus == status) return
+
+        setStatusLocally(id, status)
+        setPending(id, true)
+
         viewModelScope.launch {
             try {
-                isLoading.postValue(true)
-
-                val statusBody = status.toString()
-                    .toRequestBody("text/plain".toMediaType())
-
-                val response = ApiClient.instance.createBanner(
-                    token,
-                    statusBody,
-                    imagePart
-                )
-
-                if (response.isSuccessful) {
-                    Log.d("BannerVM", "createBanner success")
-                    success.postValue(true)
+                val response = ApiClient.instance.updateBanner(token, id, BannerStatusRequest(status))
+                if (response.isSuccessful && response.body()?.success != false) {
+                    notify(if (status == 1) "Banner ditampilkan di Beranda" else "Banner disembunyikan")
                 } else {
-                    val error = parseError(response.errorBody()?.string())
-                    Log.e("BannerVM", "createBanner failed: ${response.code()} | $error")
-                    errorMessage.postValue(error)
+                    setStatusLocally(id, oldStatus)
+                    notify(errorFrom(response, "Gagal mengubah status banner"))
                 }
-
             } catch (e: Exception) {
-                Log.e("BannerVM", "createBanner exception", e)
-                errorMessage.postValue(e.message)
+                Log.e(TAG, "updateStatus id=$id", e)
+                setStatusLocally(id, oldStatus)
+                notify(errorFrom(e))
             } finally {
-                isLoading.postValue(false)
+                setPending(id, false)
             }
         }
     }
 
-
-    fun updateBanner(token: String, id: Int, status: Int) {
-        viewModelScope.launch {
-            try {
-                isLoading.postValue(true)
-
-                val body = BannerStatusRequest(status)
-                val response = ApiClient.instance.updateBanner(token, id, body)
-
-                if (response.isSuccessful) {
-                    Log.d(
-                        "BannerVM",
-                        "updateBanner success | id=$id | status=$status"
-                    )
-                    success.postValue(true)
-                } else {
-                    val error = parseError(response.errorBody()?.string())
-                    Log.e(
-                        "BannerVM",
-                        "updateBanner failed | id=$id | code=${response.code()} | $error"
-                    )
-                    errorMessage.postValue(error)
-                }
-
-            } catch (e: Exception) {
-                Log.e(
-                    "BannerVM",
-                    "updateBanner exception | id=$id | status=$status",
-                    e
-                )
-                errorMessage.postValue(e.message)
-            } finally {
-                isLoading.postValue(false)
-            }
-        }
-    }
-
-
+    // =====================================================
+    // DELETE
+    // =====================================================
     fun deleteBanner(token: String, id: Int) {
+        if (isPending(id)) return
+        setPending(id, true)
+
         viewModelScope.launch {
             try {
-                isLoading.postValue(true)
                 val response = ApiClient.instance.deleteBanner(token, id)
-
-                if (response.isSuccessful) {
-                    deleteSuccess.postValue(true)
+                if (response.isSuccessful && response.body()?.success != false) {
+                    publish(banners.value.orEmpty().filter { it.id != id })
+                    notify("Banner dihapus")
                 } else {
-                    errorMessage.postValue("Gagal hapus banner")
+                    notify(errorFrom(response, "Gagal menghapus banner"))
                 }
             } catch (e: Exception) {
-                errorMessage.postValue(e.message)
+                Log.e(TAG, "deleteBanner id=$id", e)
+                notify(errorFrom(e))
             } finally {
-                isLoading.postValue(false)
+                setPending(id, false)
             }
         }
     }
 
-    private fun parseError(errorBody: String?): String {
+    // =====================================================
+    // HELPER
+    // =====================================================
+    private fun publish(list: List<DataBanner>) {
+        banners.value = list
+        bannersActive.value = list.filter { it.status == 1 }
+    }
+
+    private fun setStatusLocally(id: Int, status: Int) {
+        publish(banners.value.orEmpty().map { if (it.id == id) it.copy(status = status) else it })
+    }
+
+    private fun isPending(id: Int) = pendingIds.value.orEmpty().contains(id)
+
+    private fun setPending(id: Int, pending: Boolean) {
+        val current = pendingIds.value.orEmpty()
+        pendingIds.value = if (pending) current + id else current - id
+    }
+
+    private fun notify(text: String) {
+        message.value = Event(text)
+    }
+
+    private fun errorFrom(response: Response<*>, fallback: String): String {
+        val body = response.body()
+        if (response.isSuccessful && body is ApiResponse && !body.message.isNullOrBlank()) {
+            return body.message!!
+        }
+        return when (response.code()) {
+            401 -> "Sesi berakhir, silakan login ulang"
+            403 -> "Anda tidak punya akses untuk aksi ini"
+            404 -> "Banner tidak ditemukan (mungkin sudah dihapus)"
+            413 -> "Ukuran gambar terlalu besar untuk server"
+            else -> parseErrorBody(response.errorBody()?.string()) ?: "$fallback (kode ${response.code()})"
+        }
+    }
+
+    private fun errorFrom(e: Exception): String = when (e) {
+        is SocketTimeoutException -> "Koneksi ke server timeout, coba lagi"
+        is IOException -> "Tidak dapat terhubung ke server. Periksa koneksi Anda"
+        else -> e.message ?: "Terjadi kesalahan"
+    }
+
+    private fun parseErrorBody(raw: String?): String? {
+        if (raw.isNullOrBlank()) return null
         return try {
-            if (errorBody.isNullOrEmpty()) {
-                "Unknown error (empty body)"
+            val json = JSONObject(raw)
+            val errors = json.optJSONObject("errors")
+            if (errors != null && errors.keys().hasNext()) {
+                val key = errors.keys().next()
+                errors.optJSONArray(key)?.optString(0) ?: errors.optString(key)
             } else {
-                val json = JSONObject(errorBody)
-                when {
-                    json.has("message") -> json.getString("message")
-                    json.has("error") -> json.getString("error")
-                    else -> errorBody
-                }
+                json.optString("message").ifBlank { json.optString("error") }.ifBlank { null }
             }
         } catch (e: Exception) {
-            "Failed to parse error: ${e.message}"
+            null
         }
-    }
-
-
-    fun resetEvent() {
-        success.postValue(false)
-        deleteSuccess.postValue(false)
     }
 }
